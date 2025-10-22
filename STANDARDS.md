@@ -68,6 +68,26 @@ demo.xml
 <menuitem id="menu_pharmacy_prescriptions" .../>
 ```
 
+### Sintaxis Odoo 18
+
+En Odoo 18 se usan estas convenciones actualizadas:
+
+```xml
+<!-- Etiqueta list en lugar de tree -->
+<list string="Registros">
+    <field name="name"/>
+    <field name="partner_id"/>
+</list>
+
+<!-- Atributos directos en lugar de attrs -->
+<page string="Información" invisible="is_pharmaceutical == false">
+    <field name="active_principle" required="1"/>
+</page>
+
+<!-- view_mode usa list en lugar de tree -->
+<field name="view_mode">kanban,list,form</field>
+```
+
 ---
 
 ## ESTRUCTURA DE CARPETAS
@@ -260,12 +280,12 @@ class PharmacyModelo(models.Model):
                             string="Confirmar" 
                             type="object" 
                             class="oe_highlight"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="state != 'draft'"/>
                     <button name="action_cancel" 
                             string="Cancelar" 
                             type="object"
-                            attrs="{'invisible': [('state', '=', 'cancelled')]}"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done"/>
+                            invisible="state == 'cancelled'"/>
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
                 </header>
                 
                 <sheet>
@@ -306,12 +326,12 @@ class PharmacyModelo(models.Model):
                     <notebook>
                         <page string="Líneas" name="lines">
                             <field name="line_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="product_id"/>
                                     <field name="quantity"/>
                                     <field name="price_unit"/>
                                     <field name="subtotal"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Otra Información" name="other">
@@ -333,11 +353,11 @@ class PharmacyModelo(models.Model):
     </record>
     
     <!-- Vista Tree -->
-    <record id="pharmacy_modelo_tree_view" model="ir.ui.view">
-        <field name="name">pharmacy.modelo.tree</field>
+    <record id="pharmacy_modelo_list_view" model="ir.ui.view">
+        <field name="name">pharmacy.modelo.list</field>
         <field name="model">pharmacy.modelo</field>
         <field name="arch" type="xml">
-            <tree string="Lista de Modelos" 
+            <list string="Lista de Modelos"
                   decoration-info="state == 'draft'"
                   decoration-success="state == 'done'"
                   decoration-muted="state == 'cancelled'">
@@ -346,7 +366,7 @@ class PharmacyModelo(models.Model):
                 <field name="date"/>
                 <field name="total_amount" widget="monetary"/>
                 <field name="state" widget="badge" decoration-info="state == 'draft'"/>
-            </tree>
+            </list>
         </field>
     </record>
     
@@ -405,7 +425,7 @@ class PharmacyModelo(models.Model):
     <record id="action_pharmacy_modelos" model="ir.actions.act_window">
         <field name="name">Modelos</field>
         <field name="res_model">pharmacy.modelo</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">kanban,list,form</field>
         <field name="context">{}</field>
         <field name="domain">[]</field>
         <field name="help" type="html">

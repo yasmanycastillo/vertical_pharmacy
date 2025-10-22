@@ -15,7 +15,7 @@
 
             <!-- Información de Paciente -->
             <xpath expr="//notebook" position="inside">
-                <page string="Información del Paciente" attrs="{'invisible': [('is_patient', '=', False)]}">
+                <page string="Información del Paciente" invisible="is_patient == false">
                     <group>
                         <group>
                             <field name="patient_code" readonly="1"/>
@@ -28,20 +28,20 @@
                     </group>
                     <group string="Seguros Médicos">
                         <field name="insurance_info_ids" nolabel="1">
-                            <tree>
+                            <list>
                                 <field name="insurance_company_id"/>
                                 <field name="policy_number"/>
                                 <field name="plan_name"/>
                                 <field name="is_valid" widget="boolean"/>
                                 <field name="start_date"/>
                                 <field name="end_date"/>
-                            </tree>
+                            </list>
                         </field>
                     </group>
                 </page>
 
                 <!-- Información de Médico Prescriptor -->
-                <page string="Información del Prescriptor" attrs="{'invisible': [('is_prescriber', '=', False)]}">
+                <page string="Información del Prescriptor" invisible="is_prescriber == false">
                     <group>
                         <group>
                             <field name="medical_license" required="1"/>
@@ -60,7 +60,7 @@
     <record id="action_pharmacy_patients" model="ir.actions.act_window">
         <field name="name">Pacientes</field>
         <field name="res_model">res.partner</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">kanban,list,form</field>
         <field name="domain">[('is_patient', '=', True)]</field>
         <field name="context">{'default_is_patient': True}</field>
     </record>
@@ -69,7 +69,7 @@
     <record id="action_pharmacy_prescribers" model="ir.actions.act_window">
         <field name="name">Médicos Prescriptores</field>
         <field name="res_model">res.partner</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[('is_prescriber', '=', True)]</field>
         <field name="context">{'default_is_prescriber': True}</field>
     </record>
@@ -78,7 +78,7 @@
     <record id="action_pharmacy_laboratories" model="ir.actions.act_window">
         <field name="name">Laboratorios</field>
         <field name="res_model">res.partner</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[('is_laboratory', '=', True)]</field>
         <field name="context">{'default_is_laboratory': True, 'default_is_company': True}</field>
     </record>

@@ -13,7 +13,7 @@
 
             <!-- Agregar página de Información Farmacéutica -->
             <xpath expr="//notebook" position="inside">
-                <page string="Información Farmacéutica" attrs="{'invisible': [('is_pharmaceutical', '=', False)]}">
+                <page string="Información Farmacéutica" invisible="is_pharmaceutical == false">
                     <group>
                         <group string="Identificación">
                             <field name="generic_name"/>

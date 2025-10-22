@@ -54,10 +54,10 @@
     </record>
 
     <record id="pharmacy_insurance_info_tree_view" model="ir.ui.view">
-        <field name="name">pharmacy.insurance.info.tree</field>
+        <field name="name">pharmacy.insurance.info.list</field>
         <field name="model">pharmacy.insurance.info</field>
         <field name="arch" type="xml">
-            <tree string="Seguros Médicos">
+            <list string="Seguros Médicos">
                 <field name="partner_id"/>
                 <field name="insurance_company_id"/>
                 <field name="policy_number"/>
@@ -67,7 +67,7 @@
                 <field name="end_date"/>
                 <field name="copay_default" widget="monetary"/>
                 <field name="active" invisible="1"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -75,7 +75,7 @@
     <record id="action_pharmacy_insurance_info" model="ir.actions.act_window">
         <field name="name">Seguros Médicos</field>
         <field name="res_model">pharmacy.insurance.info</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="context">{}</field>
         <field name="domain">[]</field>
         <field name="help" type="html">
