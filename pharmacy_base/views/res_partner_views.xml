@@ -15,7 +15,7 @@
 
             <!-- Información de Paciente -->
             <xpath expr="//notebook" position="inside">
-                <page string="Información del Paciente" invisible="is_patient == false">
+                <page string="Información del Paciente" invisible="not is_patient">
                     <group>
                         <group>
                             <field name="patient_code" readonly="1"/>
@@ -41,7 +41,7 @@
                 </page>
 
                 <!-- Información de Médico Prescriptor -->
-                <page string="Información del Prescriptor" invisible="is_prescriber == false">
+                <page string="Información del Prescriptor" invisible="not is_prescriber">
                     <group>
                         <group>
                             <field name="medical_license" required="1"/>

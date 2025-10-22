@@ -80,9 +80,14 @@ En Odoo 18 se usan estas convenciones actualizadas:
 </list>
 
 <!-- Atributos directos en lugar de attrs -->
-<page string="Información" invisible="is_pharmaceutical == false">
+<page string="Información" invisible="not is_pharmaceutical">
     <field name="active_principle" required="1"/>
 </page>
+
+<!-- Convenciones booleanas: usar not, True/False -->
+<page string="Detalles" invisible="not show_details"/>
+<field name="is_active" invisible="is_active == False"/>
+<button string="Confirmar" invisible="state != 'draft'"/>
 
 <!-- view_mode usa list en lugar de tree -->
 <field name="view_mode">kanban,list,form</field>
