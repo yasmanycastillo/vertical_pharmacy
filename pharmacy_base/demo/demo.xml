@@ -182,14 +182,30 @@
         </record>
 
         <!-- Productos relacionados -->
-        <record id="relate_ibu_paracet" model="product.related.rel">
-            <field name="product_id" ref="product_ibuprofeno_400"/>
-            <field name="related_product_id" ref="product_paracetamol_500"/>
+        <record id="product_paracetamol_500" model="product.template">
+            <field name="name">Paracetamol 500mg</field>
+            <field name="is_pharmaceutical">True</field>
+            <field name="categ_id" ref="categ_medicamentos_otc"/>
+            <field name="active_principle">Paracetamol</field>
+            <field name="pharmaceutical_form">tableta</field>
+            <field name="concentration">500mg</field>
+            <field name="presentation">Caja con 16 tabletas</field>
+            <field name="generic_name">Paracetamol</field>
+            <field name="therapeutic_class">Analgésico/Antipirético</field>
+            <field name="list_price">6.25</field>
+            <field name="standard_price">3.00</field>
+            <field name="type">product</field>
         </record>
 
-        <record id="relate_paracet_ibu" model="product.related.rel">
-            <field name="product_id" ref="product_paracetamol_500"/>
-            <field name="related_product_id" ref="product_ibuprofeno_400"/>
-        </record>
+        <!-- Configurar productos relacionados (evitando referencias circulares) -->
+        <function model="product.template" name="write">
+            <value eval="[ref('product_ibuprofeno_400')]"/>
+            <value eval="{'related_products_ids': [(4, ref('product_paracetamol_500'))]}"/>
+        </function>
+
+        <function model="product.template" name="write">
+            <value eval="[ref('product_paracetamol_500')]"/>
+            <value eval="{'related_products_ids': [(4, ref('product_ibuprofeno_400'))]}"/>
+        </function>
     </data>
 </odoo>

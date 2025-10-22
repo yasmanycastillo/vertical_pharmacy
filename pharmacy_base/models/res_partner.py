@@ -74,12 +74,6 @@ class ResPartner(models.Model):
         string='Información de Seguros'
     )
 
-    prescription_history_ids = fields.One2many(
-        'pharmacy.prescription',
-        'patient_id',
-        string='Historial de Recetas'
-    )
-
     # Constraints
     _sql_constraints = [
         ('medical_license_unique', 'UNIQUE(medical_license)',
