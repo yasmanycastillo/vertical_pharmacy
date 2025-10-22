@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menú Principal de Farmacia -->
+    <menuitem id="menu_pharmacy_root"
+              name="Farmacia"
+              sequence="10"
+              web_icon="pharmacy_base,static/description/icon.png"/>
+
+    <!-- Submenú: Maestros -->
+    <menuitem id="menu_pharmacy_masters"
+              name="Maestros"
+              parent="menu_pharmacy_root"
+              sequence="10"/>
+
+    <menuitem id="menu_pharmacy_products"
+              name="Productos Farmacéuticos"
+              parent="menu_pharmacy_masters"
+              action="product.product_template_action"
+              sequence="10"/>
+
+    <menuitem id="menu_pharmacy_patients"
+              name="Pacientes"
+              parent="menu_pharmacy_masters"
+              action="action_pharmacy_patients"
+              sequence="20"/>
+
+    <menuitem id="menu_pharmacy_prescribers"
+              name="Médicos Prescriptores"
+              parent="menu_pharmacy_masters"
+              action="action_pharmacy_prescribers"
+              sequence="30"/>
+
+    <menuitem id="menu_pharmacy_insurances"
+              name="Seguros Médicos"
+              parent="menu_pharmacy_masters"
+              action="action_pharmacy_insurance_info"
+              sequence="40"/>
+
+    <!-- Submenú: Configuración -->
+    <menuitem id="menu_pharmacy_configuration"
+              name="Configuración"
+              parent="menu_pharmacy_root"
+              sequence="100"/>
+
+    <menuitem id="menu_pharmacy_categories"
+              name="Categorías Farmacéuticas"
+              parent="menu_pharmacy_configuration"
+              action="product.product_category_action_form"
+              sequence="10"/>
+
+    <menuitem id="menu_pharmacy_laboratories"
+              name="Laboratorios"
+              parent="menu_pharmacy_configuration"
+              action="action_pharmacy_laboratories"
+              sequence="20"/>
+</odoo>

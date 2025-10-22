@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Categorías Farmacéuticas Demo -->
+        <record id="categ_medicamentos_receta" model="product.category">
+            <field name="name">Medicamentos con Receta</field>
+            <field name="pharmaceutical_category">prescription</field>
+            <field name="abc_classification">A</field>
+        </record>
+
+        <record id="categ_medicamentos_otc" model="product.category">
+            <field name="name">Medicamentos de Venta Libre</field>
+            <field name="pharmaceutical_category">otc</field>
+            <field name="abc_classification">B</field>
+        </record>
+
+        <record id="categ_medicamentos_controlados" model="product.category">
+            <field name="name">Medicamentos Controlados</field>
+            <field name="pharmaceutical_category">controlled</field>
+            <field name="abc_classification">C</field>
+            <field name="is_controlled">True</field>
+        </record>
+
+        <record id="categ_dermocosmetica" model="product.category">
+            <field name="name">Dermocosmética</field>
+            <field name="pharmaceutical_category">dermocosmetica</field>
+            <field name="abc_classification">B</field>
+        </record>
+
+        <!-- Laboratorios Demo -->
+        <record id="laboratory_farmalab" model="res.partner">
+            <field name="name">Laboratorios FarmaLab S.A.</field>
+            <field name="is_company">True</field>
+            <field name="is_laboratory">True</field>
+        </record>
+
+        <record id="laboratory_medifarma" model="res.partner">
+            <field name="name">Medifarma del Ecuador</field>
+            <field name="is_company">True</field>
+            <field name="is_laboratory">True</field>
+        </record>
+
+        <!-- Aseguradoras Demo -->
+        <record id="insurance_salud_total" model="res.partner">
+            <field name="name">Salud Total S.A.</field>
+            <field name="is_company">True</field>
+        </record>
+
+        <record id="insurance_medilife" model="res.partner">
+            <field name="name">MediLife Seguros</field>
+            <field name="is_company">True</field>
+        </record>
+
+        <!-- Médicos Demo -->
+        <record id="prescriber_dr_garcia" model="res.partner">
+            <field name="name">Dr. Carlos García</field>
+            <field name="is_prescriber">True</field>
+            <field name="medical_license">MED-12345</field>
+            <field name="prescriber_specialty">general</field>
+        </record>
+
+        <record id="prescriber_dra_martinez" model="res.partner">
+            <field name="name">Dra. Ana Martínez</field>
+            <field name="is_prescriber">True</field>
+            <field name="medical_license">MED-67890</field>
+            <field name="prescriber_specialty">pediatrics</field>
+        </record>
+
+        <!-- Pacientes Demo -->
+        <record id="patient_maria_lopez" model="res.partner">
+            <field name="name">María López</field>
+            <field name="is_patient">True</field>
+            <field name="allergies">Penicilina</field>
+            <field name="chronic_conditions">Diabetes Tipo 2</field>
+        </record>
+
+        <record id="patient_juan_perez" model="res.partner">
+            <field name="name">Juan Pérez</field>
+            <field name="is_patient">True</field>
+            <field name="allergies">Aspirina, Sulfas</field>
+            <field name="chronic_conditions">Hipertensión</field>
+            <field name="current_medications">Enalapril 10mg</field>
+        </record>
+
+        <!-- Seguros de Pacientes Demo -->
+        <record id="insurance_maria_salud_total" model="pharmacy.insurance.info">
+            <field name="partner_id" ref="patient_maria_lopez"/>
+            <field name="insurance_company_id" ref="insurance_salud_total"/>
+            <field name="policy_number">POL-2024-001</field>
+            <field name="member_id">MEM-456789</field>
+            <field name="plan_name">Plan Premium Familiar</field>
+            <field name="coverage_level">premium</field>
+            <field name="copay_default">5.00</field>
+            <field name="coinsurance_percentage">10.0</field>
+            <field name="annual_deductible">200.00</field>
+            <field name="deductible_met">50.00</field>
+            <field name="start_date">2024-01-01</field>
+            <field name="end_date">2024-12-31</field>
+        </record>
+
+        <record id="insurance_juan_medilife" model="pharmacy.insurance.info">
+            <field name="partner_id" ref="patient_juan_perez"/>
+            <field name="insurance_company_id" ref="insurance_medilife"/>
+            <field name="policy_number">POL-2024-002</field>
+            <field name="member_id">MEM-987654</field>
+            <field name="plan_name">Plan Básico Individual</field>
+            <field name="coverage_level">basico</field>
+            <field name="copay_default">10.00</field>
+            <field name="coinsurance_percentage">20.0</field>
+            <field name="annual_deductible">500.00</field>
+            <field name="deductible_met">0.00</field>
+            <field name="start_date">2024-01-01</field>
+        </record>
+
+        <!-- Productos Farmacéuticos Demo -->
+        <record id="product_ibuprofeno_400" model="product.template">
+            <field name="name">Ibuprofeno 400mg</field>
+            <field name="is_pharmaceutical">True</field>
+            <field name="categ_id" ref="categ_medicamentos_otc"/>
+            <field name="active_principle">Ibuprofeno</field>
+            <field name="pharmaceutical_form">tableta</field>
+            <field name="concentration">400mg</field>
+            <field name="presentation">Caja con 20 tabletas</field>
+            <field name="generic_name">Ibuprofeno</field>
+            <field name="therapeutic_class">Analgésico/Antiinflamatorio</field>
+            <field name="list_price">8.50</field>
+            <field name="standard_price">4.25</field>
+            <field name="type">product</field>
+        </record>
+
+        <record id="product_paracetamol_500" model="product.template">
+            <field name="name">Paracetamol 500mg</field>
+            <field name="is_pharmaceutical">True</field>
+            <field name="categ_id" ref="categ_medicamentos_otc"/>
+            <field name="active_principle">Paracetamol</field>
+            <field name="pharmaceutical_form">tableta</field>
+            <field name="concentration">500mg</field>
+            <field name="presentation">Caja con 16 tabletas</field>
+            <field name="generic_name">Paracetamol</field>
+            <field name="therapeutic_class">Analgésico/Antipirético</field>
+            <field name="list_price">6.25</field>
+            <field name="standard_price">3.00</field>
+            <field name="type">product</field>
+        </record>
+
+        <record id="product_amoxicilina_500" model="product.template">
+            <field name="name">Amoxicilina 500mg</field>
+            <field name="is_pharmaceutical">True</field>
+            <field name="categ_id" ref="categ_medicamentos_receta"/>
+            <field name="active_principle">Amoxicilina</field>
+            <field name="pharmaceutical_form">capsula</field>
+            <field name="concentration">500mg</field>
+            <field name="presentation">Caja con 24 cápsulas</field>
+            <field name="generic_name">Amoxicilina</field>
+            <field name="therapeutic_class">Antibiótico</field>
+            <field name="list_price">15.75</field>
+            <field name="standard_price">8.50</field>
+            <field name="type">product</field>
+            <field name="laboratory_id" ref="laboratory_farmalab"/>
+            <field name="contraindications">Alergia a penicilinas, insuficiencia renal severa</field>
+            <field name="side_effects">Náuseas, diarrea, erupciones cutáneas</field>
+            <field name="dosage_instructions">Adultos: 1 cápsula cada 8 horas por 7 días</field>
+        </record>
+
+        <record id="product_losartan_50" model="product.template">
+            <field name="name">Losartan 50mg</field>
+            <field name="is_pharmaceutical">True</field>
+            <field name="categ_id" ref="categ_medicamentos_receta"/>
+            <field name="active_principle">Losartan</field>
+            <field name="pharmaceutical_form">tableta</field>
+            <field name="concentration">50mg</field>
+            <field name="presentation">Caja con 30 tabletas</field>
+            <field name="generic_name">Losartan</field>
+            <field name="therapeutic_class">Antihipertensivo</field>
+            <field name="list_price">22.00</field>
+            <field name="standard_price">12.00</field>
+            <field name="type">product</field>
+            <field name="laboratory_id" ref="laboratory_medifarma"/>
+            <field name="contraindications">Embarazo, insuficiencia hepática severa</field>
+            <field name="side_effects">Mareos, fatiga, hipercalemia</field>
+            <field name="dosage_instructions">1 tableta al día, preferiblemente en la mañana</field>
+        </record>
+
+        <!-- Productos relacionados -->
+        <record id="relate_ibu_paracet" model="product.related.rel">
+            <field name="product_id" ref="product_ibuprofeno_400"/>
+            <field name="related_product_id" ref="product_paracetamol_500"/>
+        </record>
+
+        <record id="relate_paracet_ibu" model="product.related.rel">
+            <field name="product_id" ref="product_paracetamol_500"/>
+            <field name="related_product_id" ref="product_ibuprofeno_400"/>
+        </record>
+    </data>
+</odoo>

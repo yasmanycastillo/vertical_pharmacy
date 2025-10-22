@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pharmacy_insurance_info_form_view" model="ir.ui.view">
+        <field name="name">pharmacy.insurance.info.form</field>
+        <field name="model">pharmacy.insurance.info</field>
+        <field name="arch" type="xml">
+            <form string="Información de Seguro">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-check">
+                            <field name="active" widget="boolean_button" options="{'terminology': 'active'}"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group string="Paciente y Aseguradora">
+                            <field name="partner_id" options="{'no_create': True}"/>
+                            <field name="insurance_company_id" options="{'no_create': True}"/>
+                        </group>
+                        <group string="Información de la Póliza">
+                            <field name="policy_number"/>
+                            <field name="member_id"/>
+                            <field name="group_number"/>
+                            <field name="plan_name"/>
+                            <field name="coverage_level"/>
+                        </group>
+                    </group>
+                    <group string="Vigencia">
+                        <group>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                        <group>
+                            <field name="is_valid" widget="boolean"/>
+                        </group>
+                    </group>
+                    <group string="Costos">
+                        <group>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="copay_default" widget="monetary"/>
+                            <field name="coinsurance_percentage" widget="percentage"/>
+                        </group>
+                        <group>
+                            <field name="annual_deductible" widget="monetary"/>
+                            <field name="deductible_met" widget="monetary"/>
+                            <field name="remaining_deductible" widget="monetary"/>
+                        </group>
+                    </group>
+                    <group string="Notas">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="pharmacy_insurance_info_tree_view" model="ir.ui.view">
+        <field name="name">pharmacy.insurance.info.tree</field>
+        <field name="model">pharmacy.insurance.info</field>
+        <field name="arch" type="xml">
+            <tree string="Seguros Médicos">
+                <field name="partner_id"/>
+                <field name="insurance_company_id"/>
+                <field name="policy_number"/>
+                <field name="plan_name"/>
+                <field name="is_valid" widget="boolean"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="copay_default" widget="monetary"/>
+                <field name="active" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Acción para Información de Seguros -->
+    <record id="action_pharmacy_insurance_info" model="ir.actions.act_window">
+        <field name="name">Seguros Médicos</field>
+        <field name="res_model">pharmacy.insurance.info</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crear el primer registro de seguro médico
+            </p>
+            <p>
+                Registre la información de seguros médicos de los pacientes para gestionar copagos y cobertura.
+            </p>
+        </field>
+    </record>
+</odoo>

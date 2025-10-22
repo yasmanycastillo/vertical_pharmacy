@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pharmacy_insurance_info_user,pharmacy.insurance.info user,model_pharmacy_insurance_info,pharmacy_group_user,1,1,1,0
+access_pharmacy_insurance_info_pharmacist,pharmacy.insurance.info pharmacist,model_pharmacy_insurance_info,pharmacy_group_pharmacist,1,1,1,1
+access_pharmacy_insurance_info_manager,pharmacy.insurance.info manager,model_pharmacy_insurance_info,pharmacy_group_manager,1,1,1,1

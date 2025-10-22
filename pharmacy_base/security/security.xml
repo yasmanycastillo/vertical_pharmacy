@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Grupos de Acceso -->
+        <record id="pharmacy_group_user" model="res.groups">
+            <field name="name">Farmacia: Usuario</field>
+            <field name="category_id" ref="base.module_category_healthcare"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="pharmacy_group_pharmacist" model="res.groups">
+            <field name="name">Farmacia: Farmacéutico</field>
+            <field name="category_id" ref="base.module_category_healthcare"/>
+            <field name="implied_ids" eval="[(4, ref('pharmacy_group_user'))]"/>
+        </record>
+
+        <record id="pharmacy_group_manager" model="res.groups">
+            <field name="name">Farmacia: Gerente</field>
+            <field name="category_id" ref="base.module_category_healthcare"/>
+            <field name="implied_ids" eval="[(4, ref('pharmacy_group_pharmacist'))]"/>
+        </record>
+    </data>
+</odoo>
