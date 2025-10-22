@@ -27,6 +27,7 @@
         'security/ir.model.access.csv',
         'data/sequences.xml',
         'views/product_template_views.xml',
+        'views/product_category_views.xml',
         'views/res_partner_views.xml',
         'views/insurance_info_views.xml',
         'views/menus.xml',

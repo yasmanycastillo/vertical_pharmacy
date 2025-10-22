@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista de formulario extendida -->
+    <record id="product_category_form_view_pharmacy" model="ir.ui.view">
+        <field name="name">product.category.form.pharmacy</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <group name="first" position="after">
+                <group name="pharmacy_details" string="Especificaciones Farmacia" groups="pharmacy_base.pharmacy_group_pharmacist">
+                    <group>
+                        <field name="pharmaceutical_category"/>
+                        <field name="requires_prescription"/>
+                    </group>
+                    <group>
+                        <field name="is_controlled"/>
+                        <field name="abc_classification"/>
+                    </group>
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
