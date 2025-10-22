@@ -8,9 +8,20 @@
         <field name="arch" type="xml">
             <!-- Agregar checkboxes en la parte superior -->
             <field name="company_type" position="after">
-                <field name="is_patient"/>
-                <field name="is_prescriber"/>
-                <field name="is_laboratory"/>
+                <div name="options">
+                    <span class="d-inline-flex">
+                        <field name="is_patient"/>
+                        <label for="is_patient"/>
+                    </span>
+                    <span class="d-inline-flex">
+                        <field name="is_prescriber"/>
+                        <label for="is_prescriber"/>
+                    </span>
+                    <span class="d-inline-flex">
+                        <field name="is_laboratory"/>
+                        <label for="is_laboratory"/>
+                    </span>
+                </div>
             </field>
 
             <!-- Información de Paciente -->
@@ -39,7 +50,6 @@
                         </field>
                     </group>
                 </page>
-
                 <!-- Información de Médico Prescriptor -->
                 <page string="Información del Prescriptor" invisible="not is_prescriber">
                     <group>

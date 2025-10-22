@@ -7,10 +7,9 @@ class ProductTemplate(models.Model):
 
     # Identificación Farmacéutica
     is_pharmaceutical = fields.Boolean(
-        string='Es Producto Farmacéutico',
+        string='Es Farmacéutico',
         default=False
     )
-
     active_principle = fields.Char(
         string='Principio Activo',
         help='Componente químico activo del medicamento'
